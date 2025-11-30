@@ -1,104 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galaxy with Zoom Effect</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.152.2/build/three.module.js",
-        "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js",
-        "three/examples/jsm/loaders/FontLoader.js": "https://unpkg.com/three@0.152.2/examples/jsm/loaders/FontLoader.js",
-        "three/examples/jsm/geometries/TextGeometry.js": "https://unpkg.com/three@0.152.2/examples/jsm/geometries/TextGeometry.js"
-      }
-    }
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Present For You — Demo</title>
   <style>
-    #player {
-      display: none;
-    }
-    #musicButton {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 12px 20px;
-      background-color: #ffffff10;
-      color: white;
-      border: 1px solid white;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 9999;
-      font-weight: bold;
-      backdrop-filter: blur(5px);
-    }
-    #musicButton:hover {
-      background-color: #ffffff30;
-    }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a;color:#e6eef8}
+    .card{background:linear-gradient(135deg,#1f2937 0%,#111827 100%);padding:28px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6);max-width:720px;text-align:center}
+    h1{margin:0 0 8px;font-size:28px}
+    p{margin:0 0 16px;color:#9fb0d9}
+    button{background:#06b6d4;border:none;padding:10px 16px;border-radius:8px;color:#04263b;font-weight:600;cursor:pointer}
+    footer{margin-top:14px;font-size:12px;color:#7f98bf}
   </style>
 </head>
-
 <body>
-  <div id="container"></div>
-
-  <div id="landscape-warning">
-    <div class="warning-content">
-      <div class="rotate-icon"></div>
-      <h1>Stellar Bloom</h1>
-      <h1>Tinh Cầu</h1>
-      <div class="stars-bg"></div>
-    </div>
+  <div class="card">
+    <h1>Present For You — Demo</h1>
+    <p>Halaman ini dibuat agar ketika repository dibuka, ada index yang menampilkan hasil.
+    </p>
+    <button id="action">Klik untuk menyapa</button>
+    <div id="out" style="margin-top:12px;color:#cfe9ff"></div>
+    <footer>
+      Untuk melihat halaman ini sebagai situs: aktifkan GitHub Pages di Settings → Pages → Source → main / root.
+    </footer>
   </div>
 
-  <div id="dark-overlay"></div>
-  <div id="info"></div>
-<h1 style="position: fixed; bottom: 10px; right: 10px; font-size: 18px; font-family: Arial, sans-serif; color: white; background: rgba(0, 0, 0, 0.4); padding: 6px 12px; border-radius: 8px; z-index: 9999;">
-  Create by Ur Lovely and handsome boy
-</h1>
-  <button id="musicButton" disabled>Mainkan Musik 🎵</button>
-  <div id="player"></div>
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    let player;
-     const startTime = 227;
-    const endTime = 261;
-    window.onYouTubeIframeAPIReady = function() {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'd4OMqGKBl6E',
-        playerVars: {
-          autoplay: 0,
-          start: startTime,
-          end: endTime,
-          controls: 0,
-          loop: 1,
-          playlist: 'd4OMqGKBl6E'
-        },
-        events: {
-          onReady: () => {
-            const btn = document.getElementById('musicButton');
-            btn.disabled = false;
-            btn.innerText = "Mainkan Musik 🎵";
-          },
-          onStateChange: (event) => {
-            if (event.data === YT.PlayerState.ENDED) {
-              player.seekTo(90);
-            }
-          }
-        }
-      });
-    };
-
-    document.getElementById('musicButton').addEventListener('click', () => {
-      if (player) {
-        player.playVideo();
-        document.getElementById('musicButton').style.display = 'none';
-      }
+    document.getElementById('action').addEventListener('click',()=>{
+      const now=new Date();
+      document.getElementById('out').textContent = `Halo! Ini demo berjalan. Waktu sekarang: ${now.toLocaleString('id-ID')}`;
     });
   </script>
-
-  <script type="module" src="script.js"></script>
 </body>
 </html>
